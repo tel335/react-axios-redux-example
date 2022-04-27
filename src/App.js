@@ -1,3 +1,4 @@
+import InfoPanel from './layout/infoPanel.layout'
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -5,9 +6,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 function App() {
   return (
     <div className="App">
-      <label>Hola!</label>
+      <InfoPanel />
     </div>
-  );
+  )
 }
 
 export default App;
