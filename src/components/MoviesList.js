@@ -1,4 +1,4 @@
-import { Container, Row } from "react-bootstrap"
+import { Container, Row, Col, Button } from "react-bootstrap"
 
 function MoviesList (props) {
     return (
@@ -10,7 +10,10 @@ function MoviesList (props) {
                             {
                                 props.movies.map((movie, index) => (
                                     <div key={index} className='row'>
-                                        <h2>{movie.Title}</h2>
+                                        <Row>
+                                            <Col><h2>{movie.Title}</h2></Col>
+                                            <Col><Button variant="danger" size="sm" onClick={() => props.onAdd(movie)}>Agregar</Button></Col>
+                                        </Row>
                                     </div>
                                 ))
                             }

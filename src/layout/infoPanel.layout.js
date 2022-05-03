@@ -2,10 +2,19 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import SpinnerLoader from "../components/Spinner"
 import MoviesList from "../components/MoviesList"
+import { createStore } from "redux"
+import moviesReducer from "../reducer/reducer"
+
+const store = createStore(moviesReducer)
 
 function InfoPanel () {
     const [loaded, setDataLoaded] = useState(false)
     const [moviesData, setMoviesData] = useState([])
+
+    const addMovie = (movie) => {
+        store.dispatch({ type: 'ADD', movie })
+        alert(`Pelicula agregada: ${movie.Title}`)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,10 +29,14 @@ function InfoPanel () {
         fetchData()
     })
 
+    store.subscribe(() => {
+        console.log(store.getState())
+    })
+
     return (
         <div className="App">
             <SpinnerLoader dataLoaded={loaded} />
-            <MoviesList movies={moviesData} />
+            <MoviesList movies={moviesData} onAdd={addMovie} />
         </div>
     )
 }
