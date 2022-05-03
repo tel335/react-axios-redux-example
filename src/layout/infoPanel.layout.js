@@ -2,10 +2,12 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import SpinnerLoader from "../components/Spinner"
 import MoviesList from "../components/MoviesList"
-import { createStore } from "redux"
+import { configureStore } from "@reduxjs/toolkit"
 import moviesReducer from "../reducer/reducer"
 
-const store = createStore(moviesReducer)
+const store = configureStore({
+    reducer: moviesReducer
+  })
 
 function InfoPanel () {
     const [loaded, setDataLoaded] = useState(false)
